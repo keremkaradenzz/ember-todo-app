@@ -6,25 +6,39 @@
 <main class='main-app'>
   <h1>Ember Todo App </h1>
   <div>
-    
+
     <Input
       class='form-input'
       id='todo-app'
-       @type="text"
+      @type='text'
       placeholder='Please todo enter...'
       @value={{this._myValue}}
-      {{on "input" this.myValue}}
+      {{on 'input' this.myValue}}
     />
+    {{#if this.isEdit}}
+      <button
+        type='button'
+        class='form-btn'
+        {{on 'click' this.handleUpdate}}
+      >Update</button>
+    {{else}}
+      <button
+        type='button'
+        class='form-btn'
+        {{on 'click' this.handleClick}}
+      >Add</button>
+    {{/if}}
 
-    <button type='button' class='form-btn' {{on "click" this.handleClick}}>Add</button>
   </div>
   <ul class='todo-ul'>
-       {{#each this.todo as |todo index|}}
-           {{!-- template-lint-disable no-invalid-interactive --}}
-           <li>{{todo}} <span {{on "click" (fn this.handleDelete index)}}>Delete</span> <span>Update</span></li>
-       {{/each}}
+    {{#each this.todo as |todo index|}}
+      {{! template-lint-disable no-invalid-interactive }}
+      <li>{{todo}}
+        <span {{on 'click' (fn this.handleDelete index)}}>Delete</span>
+        <span {{on 'click' (fn this.handleEdit index)}}>Update</span></li>
+    {{/each}}
   </ul>
-    {{this.task}}
+  {{this.task}}
 </main>
 
 {{outlet}}
