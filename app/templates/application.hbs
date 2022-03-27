@@ -19,9 +19,9 @@
     <button type='button' class='form-btn' {{on "click" this.handleClick}}>Add</button>
   </div>
   <ul class='todo-ul'>
-       {{#each this.todo as |todo|}}
+       {{#each this.todo as |todo index|}}
            {{!-- template-lint-disable no-invalid-interactive --}}
-           <li>{{todo}} <span {{on "click" this.handleDelete}}>Delete</span> <span>Update</span></li>
+           <li>{{todo}} <span {{on "click" (fn this.handleDelete index)}}>Delete</span> <span>Update</span></li>
        {{/each}}
   </ul>
     {{this.task}}

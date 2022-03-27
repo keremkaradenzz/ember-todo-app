@@ -11,10 +11,10 @@ export default class ApplicationController extends Controller {
   }
 
   @action 
-  handleDelete() {
-    console.log('denemer');
+  handleDelete(index) {
+    let filtered = this.todo.filter((item, i) => i !== index);
+    this.todo = [...filtered];
   }
-
 
   @action
   handleClick() {
