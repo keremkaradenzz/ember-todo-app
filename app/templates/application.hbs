@@ -33,7 +33,7 @@
   <ul class='todo-ul'>
     {{#each this.todo as |todo index|}}
       {{! template-lint-disable no-invalid-interactive }}
-      <li>{{todo}}
+      <li>{{convertNumber index}}. {{todo}}
         <span {{on 'click' (fn this.handleDelete index)}}>Delete</span>
         <span {{on 'click' (fn this.handleEdit index)}}>Update</span></li>
     {{/each}}
