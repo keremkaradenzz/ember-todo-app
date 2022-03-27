@@ -1,7 +1,30 @@
-{{page-title "EmberTodoApp"}}
+{{page-title 'Ember Todo App'}}
 
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+{{! The following component displays Ember's default welcome message. }}
+{{! <WelcomePage /> }}
+{{! Feel free to remove this! }}
+<main class='main-app'>
+  <h1>Ember Todo App </h1>
+  <div>
+    
+    <Input
+      class='form-input'
+      id='todo-app'
+       @type="text"
+      placeholder='Please todo enter...'
+      @value={{this._myValue}}
+      {{on "input" this.myValue}}
+    />
+
+    <button type='button' class='form-btn' {{on "click" this.handleClick}}>Add</button>
+  </div>
+  <ul class='todo-ul'>
+       {{#each this.todo as |todo|}}
+           {{!-- template-lint-disable no-invalid-interactive --}}
+           <li>{{todo}} <span {{on "click" this.handleDelete}}>Delete</span> <span>Update</span></li>
+       {{/each}}
+  </ul>
+    {{this.task}}
+</main>
 
 {{outlet}}
