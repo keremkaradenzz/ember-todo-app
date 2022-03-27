@@ -33,9 +33,17 @@
   <ul class='todo-ul'>
     {{#each this.todo as |todo index|}}
       {{! template-lint-disable no-invalid-interactive }}
-      <li>{{convertNumber index}}. {{todo}}
+      <li class={{if (eq this.isComplete index) "is-active"}}>{{convertNumber index}}.
+        {{todo}}
         <span {{on 'click' (fn this.handleDelete index)}}>Delete</span>
-        <span {{on 'click' (fn this.handleEdit index)}}>Update</span></li>
+        <span {{on 'click' (fn this.handleEdit index)}}>Update</span>
+        <Input
+          id='admin-checkbox'
+          @type='checkbox'
+          @checked={{eq this.isComplete index}}
+          {{on 'input' (fn this.handleCheck index)}}
+        />
+      </li>
     {{/each}}
   </ul>
   {{this.task}}

@@ -6,7 +6,7 @@ export default class ApplicationController extends Controller {
   @tracked _myValue = '';
   @tracked todo = ['firstTodo'];
   @tracked isEdit = false;
-
+  @tracked isComplete = -1;
   @action
   myValue(event) {
     event.preventDefault();
@@ -41,5 +41,15 @@ export default class ApplicationController extends Controller {
       this.isEdit = false;
       this._myValue = "";
     }
+  }
+
+  @action
+  handleCheck(index, event) {
+    if(event.target.checked) {
+      this.isComplete = index
+    }else{
+      this.isComplete = -1;
+    }
+
   }
 }
